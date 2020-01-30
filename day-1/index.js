@@ -1,8 +1,17 @@
 const R = require('ramda');
+const getFuelRequired = require('./getFuelRequired');
+const fs = require('fs');
 
-module.exports = (mass) =>
-  R.pipe(
-    R.divide(R.__, 3),
-    Math.floor,
-    R.subtract(R.__, 2),
-  )(mass);
+const INPUT = fs.readFileSync('./input.txt', { encoding: 'utf8' }).split("\n");
+
+const sumOfFuelReqs = (accum, fuel) => accum + fuel;
+
+const result = R.pipe(
+  R.map(
+    getFuelRequired,
+    R.__
+  ),
+  R.reduce(sumOfFuelReqs, 0, R.__),
+)(INPUT);
+
+console.log(result);

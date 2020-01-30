@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const getFuelRequired = require('../day-1/index');
+const getFuelRequired = require('../day-1/getFuelRequired');
 
 describe('Day one - AoC', () => {
   it('with a mass of 12 output should be two', () => {
