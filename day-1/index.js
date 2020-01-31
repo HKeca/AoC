@@ -9,10 +9,9 @@ const sumOfFuelReqs = (accum, fuel) => accum + fuel;
 
 const result = R.pipe(
   R.map(
-    getFuelRequired,
-    R.__
+    getFuelRequired
   ),
-  R.reduce(sumOfFuelReqs, 0, R.__),
+  R.reduce(sumOfFuelReqs, 0),
 )(INPUT);
 
 console.log(result);
