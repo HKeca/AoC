@@ -1,15 +1,18 @@
-const R = require('ramda');
+const { __, divide, subtract, pipe } = require('ramda');
 
-const _getFuelReqs = R.pipe(
-  R.divide(R.__, 3),
+const _getFuelReqs = pipe(
+  divide(__, 3),
   Math.floor,
-  R.subtract(R.__, 2),
+  subtract(__, 2),
 );
 
-function getFuelReqs(initMass) {
-  const newMass = _getFuelReqs(initMass);
+const getFuelReqs = (initMass, acc = 0) =>
+  initMass < 0 ? acc : getFuelReqs(
+    _getFuelReqs(initMass),
+    initMass + acc
+  );
 
-  return newMass < 0 ? 0 : newMass + getFuelReqs(newMass);
-}
-
-module.exports = getFuelReqs;
+module.exports = {
+  _getFuelReqs,
+  getFuelReqs
+};
