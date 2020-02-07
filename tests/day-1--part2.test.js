@@ -1,11 +1,11 @@
 const { expect } = require('chai');
 const { pipe } = require('ramda');
-const { _getFuelReqs, getFuelReqs } = require('../day-1--part2/getFuelRequired');
+const { applyMaths, getFuelReqs } = require('../day-1--part2/getFuelRequired');
 
 describe('Day one (part2) - recursive fuel reqs', () => {
   it('with a mass of 1969 output should be 966', () => {
     const fuelReq = pipe(
-      _getFuelReqs,
+      applyMaths,
       getFuelReqs
     )(1969);
 
@@ -14,7 +14,7 @@ describe('Day one (part2) - recursive fuel reqs', () => {
 
   it('with a mass of 100756 output should be 50346', () => {
     const fuelReq = pipe(
-      _getFuelReqs,
+      applyMaths,
       getFuelReqs
     )(100756);
 
@@ -23,7 +23,7 @@ describe('Day one (part2) - recursive fuel reqs', () => {
 
   it('with a mass of 14 output should be 2', () => {
     const fuelReq = pipe(
-      _getFuelReqs,
+      applyMaths,
       getFuelReqs
     )(14);
 
