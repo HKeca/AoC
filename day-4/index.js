@@ -1,19 +1,17 @@
-const findSimilar = input => {
-  let last = "";
+const isSimilar = (a, b) => parseInt(a) === parseInt(b);
 
-  for (let i = 0; i < input.length; i++) {
-    if (last === "") {
-      last = input[i];
-      continue;
-    }
-
-    if (parseInt(last) === parseInt(input[i]))
-      return true;
-
-    last = input[i];
-  }
-
-  return false;
-};
+/**
+ * Find if string has at least one matching pair side by side
+ *
+ * >Check if two adjacent digits are the same
+ *
+ * @param {String} input string of numbers
+ * @param {Integer} idx current index
+ */
+const findSimilar = (input, idx = 1) => (
+  idx > input.length ?
+   false :
+    isSimilar(input[idx], input[idx - 1]) ? true : findSimilar(input, idx + 1)
+);
 
 module.exports = findSimilar;
