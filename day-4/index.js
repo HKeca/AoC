@@ -14,4 +14,23 @@ const findSimilar = (input, idx = 1) => (
     isSimilar(input[idx], input[idx - 1]) ? true : findSimilar(input, idx + 1)
 );
 
-module.exports = findSimilar;
+/**
+ * Loop over input and next if each number is greater
+ * than or equal to the next
+ *
+ * @param {String} input string of numbers
+ * @returns {Boolean}
+ */
+const neverLessThan = input => {
+  for (let i = 1; i < input.length; i++) {
+    if (parseInt(input[i]) <= parseInt(input[i - 1]))
+      return false;
+  }
+
+  return true;
+}
+
+module.exports = {
+  findSimilar,
+  neverLessThan
+};
