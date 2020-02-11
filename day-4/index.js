@@ -1,5 +1,5 @@
 const isSimilar = (a, b) => parseInt(a) === parseInt(b);
-const lessThanEqual = (a, b) => parseInt(a) <= parseInt(b);
+const lessThanEqual = (a, b) => parseInt(a) >= parseInt(b);
 
 /**
  * Find if string has at least one matching pair side by side
@@ -23,9 +23,9 @@ const findSimilar = (input, idx = 1) => (
  * @returns {Boolean}
  */
 const neverLessThan = (input, idx = 1) => (
-  idx > input.length ?
+  idx > input.length - 1 ?
     true :
-    lessThanEqual(input[idx], input[idx - 1]) ? false : neverLessThan(input, idx + 1)
+    lessThanEqual(input[idx], input[idx - 1]) ? neverLessThan(input, idx + 1) : false
 );
 
 module.exports = {
