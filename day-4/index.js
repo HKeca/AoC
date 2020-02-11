@@ -1,3 +1,5 @@
+const { pipe, range, and, filter } = require('ramda');
+
 const isSimilar = (a, b) => parseInt(a) === parseInt(b);
 const lessThanEqual = (a, b) => parseInt(a) >= parseInt(b);
 
@@ -27,6 +29,21 @@ const neverLessThan = (input, idx = 1) => (
     true :
     lessThanEqual(input[idx], input[idx - 1]) ? neverLessThan(input, idx + 1) : false
 );
+
+let rangeIn = [
+  367479,
+  893698
+];
+
+const applyRules = input =>
+  findSimilar(input.toString()) &&
+  neverLessThan(input.toString());
+
+const getPasswords = filter(applyRules);
+
+const results = getPasswords(range(rangeIn[0], rangeIn[1]));
+
+console.log(results.length);
 
 module.exports = {
   findSimilar,
