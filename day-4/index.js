@@ -10,11 +10,14 @@ const lessThanEqual = (a, b) => parseInt(a) >= parseInt(b);
  *
  * @param {String} input string of numbers
  * @param {Integer} idx current index
+ * @returns {Boolean}
  */
-const findSimilar = (input, idx = 1) => (
-  idx > input.length ?
-   false :
-    isSimilar(input[idx], input[idx - 1]) ? true : findSimilar(input, idx + 1)
+const hasMatchingPair = (input, idx = 1) => (
+  idx > input.length
+  ? false
+  : isSimilar(input[idx], input[idx - 1])
+  ? true
+  : hasMatchingPair(input, idx + 1)
 );
 
 /**
@@ -22,26 +25,29 @@ const findSimilar = (input, idx = 1) => (
  * than or equal to the next
  *
  * @param {String} input string of numbers
+ * @param {Integer} idx current index
  * @returns {Boolean}
  */
-const neverLessThan = (input, idx = 1) => (
-  idx > input.length - 1 ?
-    true :
-    lessThanEqual(input[idx], input[idx - 1]) ? neverLessThan(input, idx + 1) : false
+const doesntDecrease = (input, idx = 1) => (
+  idx > input.length - 1
+  ? true
+  : lessThanEqual(input[idx], input[idx - 1])
+  ? doesntDecrease(input, idx + 1)
+  : false
 );
 
 const applyRules = input =>
-  findSimilar(input.toString()) &&
-  neverLessThan(input.toString());
+  hasMatchingPair(input.toString()) &&
+  doesntDecrease(input.toString());
 
-const results = pipe(
+const possiblePasswords = pipe(
   range,
   filter(applyRules)
 )(367479, 893698);
 
-console.log(results.length);
+console.log(`Number of possible passwords: ${possiblePasswords.length}`);
 
 module.exports = {
-  findSimilar,
-  neverLessThan
+  hasMatchingPair,
+  doesntDecrease
 };
