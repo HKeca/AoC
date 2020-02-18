@@ -13,6 +13,11 @@ describe('Day 4 - part 2', () => {
       const result = hasMatchingPair('121212');
       expect(result).to.equal(false);
     });
+
+    it('Should return false when groups of three+ are the only similar values', () => {
+      const result = hasMatchingPair('111222');
+      expect(result).to.equal(false);
+    });
   });
 
   describe('Next number is greater than or equal to previous number', () => {
