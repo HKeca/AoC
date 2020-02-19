@@ -1,4 +1,4 @@
-const isSimilar = (a, b) => parseInt(a) === parseInt(b);
+const isEqual = (a, b) => parseInt(a) === parseInt(b);
 
 // This might lead to unexpected results... not checking if "c" is undefined
 const checkBounds = (a, b, c) => parseInt(a) !== parseInt(b) && parseInt(a) !== parseInt(c);
@@ -15,7 +15,7 @@ const checkBounds = (a, b, c) => parseInt(a) !== parseInt(b) && parseInt(a) !== 
 const hasMatchingPair = (input, idx = 1) => (
   idx > input.length
   ? false
-  : isSimilar(input[idx], input[idx - 1]) && checkBounds(input[idx], input[idx - 2], input[idx + 1])
+  : isEqual(input[idx], input[idx - 1])
   ? true
   : hasMatchingPair(input, idx + 1)
 );
