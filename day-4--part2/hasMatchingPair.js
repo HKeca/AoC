@@ -4,15 +4,16 @@ const isEqual = (a, b) => parseInt(a) === parseInt(b);
  * Check around pair to make sure its only a pair ("11")
  * and not multiple same digits ("111")
  *
- * >b should not equal a and c should not equal a
+ * >beforePair should not equal pairValue
+ * >and afterPair should not equal pairValue
  *
- * @param {String} a
- * @param {String} b
- * @param {String} c
+ * @param {String} pairValue
+ * @param {String} beforePair
+ * @param {String} afterPair
  */
-const isStrictlyPair = (a, b, c) =>
-  parseInt(a) !== parseInt(b) &&
-  parseInt(a) !== parseInt(c);
+const isStrictlyPair = (pairValue, beforePair, afterPair) =>
+  parseInt(pairValue) !== parseInt(beforePair) &&
+  parseInt(pairValue) !== parseInt(afterPair);
 
 /**
  * Find if string has at least one matching pair side by side
